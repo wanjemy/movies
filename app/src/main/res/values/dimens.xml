@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_4dp">4dp</dimen>
+    <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_16dp">16dp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
+    <dimen name="size_24dp">24dp</dimen>
+    <dimen name="size_28dp">28dp</dimen>
+    <dimen name="size_32dp">32dp</dimen>
+    <dimen name="size_36dp">36dp</dimen>
+    <dimen name="size_40dp">40dp</dimen>
+    <dimen name="size_44dp">40dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_52dp">52dp</dimen>
+    <dimen name="size_56dp">56dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_64dp">64dp</dimen>
+
+    <dimen name="text8_96">8.96sp</dimen>
+    <dimen name="text11_20">11.20sp</dimen>
+    <dimen name="text14">14sp</dimen>
+    <dimen name="text17_50">17.5sp</dimen>
+    <dimen name="text21_88">21.88sp</dimen>
+    <dimen name="text27_34">27.34sp</dimen>
+    <dimen name="text34_18">34.18sp</dimen>
+    <dimen name="text42_72">42.72sp</dimen>
+
+    <dimen name="body_x_small">@dimen/text8_96</dimen>
+    <dimen name="body_small">@dimen/text11_20</dimen>
+    <dimen name="body_medium">@dimen/text14</dimen>
+    <dimen name="heading_x_small">@dimen/text17_50</dimen>
+    <dimen name="heading_small">@dimen/text21_88</dimen>
+    <dimen name="heading_medium">@dimen/text27_34</dimen>
+    <dimen name="heading_large">@dimen/text34_18</dimen>
+    <dimen name="heading_x_large">@dimen/text42_72</dimen>
+</resources>
