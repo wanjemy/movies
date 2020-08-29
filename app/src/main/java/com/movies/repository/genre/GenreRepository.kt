@@ -1,12 +1,11 @@
 package com.movies.repository.genre
 
-import android.util.Log
 import com.movies.api.Constants
 import com.movies.api.RestClient
 import com.movies.base.BaseRepository
 import com.movies.base.BaseResponse
-import com.movies.model.api.GenreResponse
-import com.movies.model.common.GenreModelCommon
+import com.movies.model.api.genre.GenreResponse
+import com.movies.model.common.genre.GenreModelCommon
 import com.movies.repository.RepositoryListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -30,24 +29,10 @@ class GenreRepository : BaseRepository(), GenreRepositoryInterface {
                 }
 
             } else {
-                onErrorFetchGenres(genreResponse, repositoryListener)
+                onErrorRequest(genreResponse, repositoryListener)
             }
         } catch (e: Exception) {
-            onErrorFetchGenres(null, repositoryListener)
-        }
-    }
-
-    private suspend fun onErrorFetchGenres(
-        genreResponse: Response<GenreResponse>?,
-        repositoryListener: RepositoryListener<List<GenreModelCommon>, BaseResponse>
-    ) {
-        val response = BaseResponse()
-        response.status = genreResponse?.code() ?: Constants.ERROR
-        response.status_message = genreResponse?.body()?.status_message ?: ""
-
-
-        withContext(Dispatchers.Main) {
-            repositoryListener.onFailureListener(response)
+            onFatalError(repositoryListener)
         }
     }
 }

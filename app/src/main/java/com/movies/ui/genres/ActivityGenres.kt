@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.movies.R
 import com.movies.base.BaseActivity
-import com.movies.repository.genre.GenreAdapter
 import com.movies.utils.extention.gone
 import com.movies.utils.extention.visible
 import kotlinx.android.synthetic.main.activity_genres.*
@@ -25,6 +24,7 @@ class ActivityGenres : BaseActivity() {
         initObserver()
         initRecyclerView()
         initToolbar(false, R.string.genres)
+        initOnClick()
 
         viewModel.fetchGenres()
     }
@@ -66,6 +66,18 @@ class ActivityGenres : BaseActivity() {
                 flLoading.gone()
             }
         })
+    }
+
+    private fun initOnClick() {
+        llRetry.setOnClickListener {
+            flLoading.visible()
+
+            clPageNotFound.gone()
+            clPageTimeout.gone()
+            clPageError.gone()
+
+            viewModel.fetchGenres()
+        }
     }
 
     private fun initRecyclerView() {

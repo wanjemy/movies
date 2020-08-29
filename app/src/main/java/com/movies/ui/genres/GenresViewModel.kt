@@ -3,17 +3,17 @@ package com.movies.ui.genres
 import androidx.lifecycle.ViewModel
 import com.movies.api.Constants
 import com.movies.base.BaseResponse
-import com.movies.model.common.GenreModelCommon
+import com.movies.model.common.genre.GenreModelCommon
 import com.movies.repository.RepositoryListener
 import com.movies.repository.genre.GenreRepository
+import com.movies.repository.genre.GenreRepositoryInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class GenresViewModel() : ViewModel(), GenreViewModelInterface {
     private val genreState = GenreState()
-    private val genreRepository = GenreRepository()
+    private val genreRepository: GenreRepositoryInterface = GenreRepository()
 
     override fun state(): GenreState = genreState
 
@@ -48,18 +48,6 @@ class GenresViewModel() : ViewModel(), GenreViewModelInterface {
                             genreState.isPageNotFound.value = false
                         }
                     }
-
-//                        Constants.NOT_FOUND -> {
-//
-//                        }
-//
-//                        Constants.TIMEOUT -> {
-//
-//                        }
-//
-//                        else -> {
-//
-//                        }
                 }
             }
 

@@ -1,4 +1,4 @@
-package com.movies.model.common
+package com.movies.model.common.genre
 
 import com.movies.base.BaseCommonModel
 
