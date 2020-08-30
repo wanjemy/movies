@@ -26,7 +26,7 @@ class GenresViewModel() : ViewModel(), GenreViewModelInterface {
 
                 override fun onFailureListener(failure: BaseResponse) {
 
-                    when (failure.status) {
+                    when (failure.status_access) {
                         Constants.TIMEOUT -> {
                             genreState.isTimeout.value = true
 

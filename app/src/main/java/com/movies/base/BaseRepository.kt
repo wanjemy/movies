@@ -16,7 +16,7 @@ abstract class BaseRepository {
         repositoryListener: RepositoryListener<*, BaseResponse>
     ) {
         val response = BaseResponse()
-        response.status = baseResponse.code()
+        response.status_access = baseResponse.code()
         response.status_message = baseResponse.body()?.status_message ?: ""
 
 
@@ -27,8 +27,16 @@ abstract class BaseRepository {
 
     protected suspend fun onFatalError(repositoryListener: RepositoryListener<*, BaseResponse>) {
         val response = BaseResponse()
-        response.status = Constants.ERROR
-        response.status_message =  ""
+        response.status_access = Constants.ERROR
+
+        withContext(Dispatchers.Main) {
+            repositoryListener.onFailureListener(response)
+        }
+    }
+
+    protected suspend fun onTimeOUt(repositoryListener: RepositoryListener<*, BaseResponse>) {
+        val response = BaseResponse()
+        response.status_access = Constants.TIMEOUT
 
         withContext(Dispatchers.Main) {
             repositoryListener.onFailureListener(response)

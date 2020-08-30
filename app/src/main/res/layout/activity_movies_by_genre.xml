@@ -14,16 +14,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/clToolbar" />
 
     <include layout="@layout/view_loading" />
 
     <include
         layout="@layout/view_page_error"
-        android:visibility="gone" />
-
-    <include
-        layout="@layout/view_page_not_found"
         android:visibility="gone" />
 
     <include

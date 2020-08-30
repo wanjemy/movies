@@ -2,6 +2,9 @@
     <string name="app_name">Movies</string>
     <string name="genres">Genres</string>
     <string name="page_not_found">Page not found</string>
-    <string name="page_error">Page not found</string>
+    <string name="page_error">Cannot access this page</string>
     <string name="request_time_out">Request timeout</string>
+    <string name="movies">Movies</string>
+    <string name="trailer">Trailer</string>
+    <string name="view_review">View review</string>
 </resources>

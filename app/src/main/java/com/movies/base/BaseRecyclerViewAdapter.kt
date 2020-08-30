@@ -3,6 +3,7 @@ package com.movies.base
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.movies.R
@@ -25,14 +26,21 @@ abstract class BaseRecyclerViewAdapter<ITEM : BaseCommonModel>(private val recyc
 
     init {
         recyclerView?.let {
-            val linearLayoutManager = it.layoutManager as LinearLayoutManager?
-            linearLayoutManager?.let { manager ->
+            val layoutManager = it.layoutManager
+
+            layoutManager?.let { manager ->
                 it.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
-                        val lastVisibleItem = manager.findLastVisibleItemPosition()
+                        var lastVisibleItem = -1
 
-                        if (lastVisibleItem > recyclerviewItem.size - 3 && !isLoading) {
+                        if (layoutManager is LinearLayoutManager) {
+                            lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                        } else if (layoutManager is GridLayoutManager) {
+                            lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition()
+                        }
+
+                        if (lastVisibleItem > recyclerviewItem.size - 3 && !isLoading && lastVisibleItem != -1) {
                             onLoadMore()
                         }
                     }

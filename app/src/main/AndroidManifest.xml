@@ -21,6 +21,7 @@
 
         <activity android:name=".ui.genres.ActivityGenres" />
         <activity android:name="com.movies.ui.movie.moviesByGenre.MoviesByGenre" />
+        <activity android:name=".ui.movie.movieDetail.MovieDetail" />
     </application>
 
 </manifest>

@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.lang.Exception
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 class GenreRepository : BaseRepository(), GenreRepositoryInterface {
     override suspend fun fetchGenres(repositoryListener: RepositoryListener<List<GenreModelCommon>, BaseResponse>) {
@@ -31,6 +33,8 @@ class GenreRepository : BaseRepository(), GenreRepositoryInterface {
             } else {
                 onErrorRequest(genreResponse, repositoryListener)
             }
+        } catch (e: SocketTimeoutException) {
+            onTimeOUt(repositoryListener)
         } catch (e: Exception) {
             onFatalError(repositoryListener)
         }

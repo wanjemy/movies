@@ -20,16 +20,16 @@ class GenreAdapter : BaseRecyclerViewAdapter<GenreModelCommon>() {
         )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = recyclerviewItem[position]
+        if (getItemViewType(position) == ITEM) {
+            val item = recyclerviewItem[position]
 
-        if (item.recyclerViewViewType == ITEM) {
             holder as GenreItem
             holder.bind(item)
         }
     }
 
     private inner class GenreItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvGenreName: TextView = itemView.findViewById(R.id.tvGenreName)
+        private val tvGenreName: TextView = itemView.findViewById(R.id.tvGenreName)
 
         fun bind(genre: GenreModelCommon) {
             tvGenreName.text = genre.name
