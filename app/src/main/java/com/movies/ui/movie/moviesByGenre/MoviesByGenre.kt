@@ -27,6 +27,7 @@ class MoviesByGenre : BaseActivity(), BaseRecyclerViewAdapter.BaseRecyclerViewAd
         initRecyclerView()
         initObserver()
         initToolbar(true, R.string.movies)
+        initOnClick()
 
         fetchMovies()
     }
@@ -73,6 +74,15 @@ class MoviesByGenre : BaseActivity(), BaseRecyclerViewAdapter.BaseRecyclerViewAd
         })
     }
 
+    private fun initOnClick() {
+        llRetry.setOnClickListener {
+            flLoading.visible()
+            clPageTimeout.gone()
+
+            fetchMovies()
+        }
+    }
+
     private fun fetchMovies() {
         if (genreId != -1) {
             viewModel.fetchMovie(genreId)
@@ -82,13 +92,10 @@ class MoviesByGenre : BaseActivity(), BaseRecyclerViewAdapter.BaseRecyclerViewAd
     }
 
     override fun onLoadMore() {
-        viewModel.fetchMovie(genreId)
+        fetchMovies()
     }
 
     override fun onRetryButtonClick() {
-        flLoading.visible()
-        clPageTimeout.gone()
-
         fetchMovies()
     }
 }

@@ -5,6 +5,7 @@ import com.movies.base.BaseRepository
 import com.movies.base.BaseResponse
 import com.movies.model.common.movie.MovieDetailModelCommon
 import com.movies.model.common.movie.MovieModelCommon
+import com.movies.model.common.movie.MovieReviewModelCommon
 import com.movies.repository.RepositoryListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -69,6 +70,31 @@ class MovieRepository : BaseRepository(), MovieRepositoryInterface {
         } catch (e: Exception) {
             onFatalError(repositoryListener)
         }
+    }
 
+    override suspend fun fetchMovieReview(
+        movieId: Int,
+        page: Int,
+        repositoryListener: RepositoryListener<List<MovieReviewModelCommon>, BaseResponse>
+    ) {
+        try {
+            val movieReviewResponse = RestClient.request.fetchMovieReview(movieId, page)
+
+            if (movieReviewResponse.isSuccessful) {
+                val movieReview = movieReviewResponse.body()
+                movieReview?.results?.let {
+                    withContext(Dispatchers.Main) {
+                        repositoryListener.onSuccessListener(mappingResponse(it))
+                    }
+                }
+
+            } else {
+                onErrorRequest(movieReviewResponse, repositoryListener)
+            }
+        } catch (e: SocketTimeoutException) {
+            onTimeOUt(repositoryListener)
+        } catch (e: Exception) {
+            onFatalError(repositoryListener)
+        }
     }
 }

@@ -1,10 +1,12 @@
 package com.movies.ui.movie.movieDetail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.movies.R
 import com.movies.base.BaseActivity
+import com.movies.ui.movie.movieReview.MovieReview
 import com.movies.utils.extention.gone
 import com.movies.utils.extention.setImage
 import com.movies.utils.extention.visible
@@ -83,7 +85,11 @@ class MovieDetail : BaseActivity() {
         }
 
         tvViewReview.setOnClickListener {
+            val intent = Intent(this, MovieReview::class.java).apply {
+                this.putExtra("movieId", movieId)
+            }
 
+            startActivity(intent)
         }
     }
 }
